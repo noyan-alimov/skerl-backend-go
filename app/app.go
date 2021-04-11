@@ -70,6 +70,9 @@ func (a *App) setRouters() {
 
 	// Complete Quiz
 	a.Put("/completeQuiz", a.CompleteQuiz)
+
+	// Quizzes Students
+	a.Get("/quizzesStudents", a.GetQuizzesAndStudents)
 }
 
 // Wrap the router for GET method
@@ -172,4 +175,9 @@ func (a *App) GetStudent(w http.ResponseWriter, r *http.Request) {
 // Complete Quiz
 func (a *App) CompleteQuiz(w http.ResponseWriter, r *http.Request) {
 	handler.CompleteQuiz(a.DB, w, r)
+}
+
+// Quizzes Students
+func (a *App) GetQuizzesAndStudents(w http.ResponseWriter, r *http.Request) {
+	handler.GetQuizzesAndStudents(a.DB, w, r)
 }

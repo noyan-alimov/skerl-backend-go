@@ -36,8 +36,8 @@ type Student struct {
 
 type QuizStudent struct {
 	gorm.Model
-	QuizId    uint
-	StudentId uint
+	QuizId    uint `json:"quizId"`
+	StudentId uint `json:"studentId"`
 }
 
 type QuestionStudent struct {
