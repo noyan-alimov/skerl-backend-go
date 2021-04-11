@@ -63,6 +63,13 @@ func (a *App) setRouters() {
 	a.Get("/answers", a.GetAnswersByQuestionId)
 	a.Put("/answers/{id}", a.UpdateAnswer)
 	a.Delete("/answers/{id}", a.DeleteAnswer)
+
+	// Student
+	a.Post("/students", a.CreateStudent)
+	a.Get("/students/{id}", a.GetStudent)
+
+	// Complete Quiz
+	a.Put("/completeQuiz", a.CompleteQuiz)
 }
 
 // Wrap the router for GET method
@@ -151,4 +158,18 @@ func (a *App) UpdateAnswer(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) DeleteAnswer(w http.ResponseWriter, r *http.Request) {
 	handler.DeleteAnswer(a.DB, w, r)
+}
+
+// Student
+func (a *App) CreateStudent(w http.ResponseWriter, r *http.Request) {
+	handler.CreateStudent(a.DB, w, r)
+}
+
+func (a *App) GetStudent(w http.ResponseWriter, r *http.Request) {
+	handler.GetStudent(a.DB, w, r)
+}
+
+// Complete Quiz
+func (a *App) CompleteQuiz(w http.ResponseWriter, r *http.Request) {
+	handler.CompleteQuiz(a.DB, w, r)
 }

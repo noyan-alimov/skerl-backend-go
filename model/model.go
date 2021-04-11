@@ -29,7 +29,34 @@ type Answer struct {
 	QuestionId uint   `json:"questionId"`
 }
 
+type Student struct {
+	gorm.Model
+	Name string `json:"name"`
+}
+
+type QuizStudent struct {
+	gorm.Model
+	QuizId    uint
+	StudentId uint
+}
+
+type QuestionStudent struct {
+	gorm.Model
+	QuestionId uint
+	StudentId  uint
+	QuizId     uint
+}
+
+type AnswerStudent struct {
+	gorm.Model
+	IsAnswerCorrect bool `json:"isAnswerCorrect"`
+	AnswerId        uint `json:"answerId"`
+	StudentId       uint `json:"studentId"`
+	QuestionId      uint `json:"questionId"`
+	QuizId          uint `json:"quizId"`
+}
+
 func DBMigrate(db *gorm.DB) *gorm.DB {
-	db.AutoMigrate(&Teacher{}, &Quiz{}, &Question{}, &Answer{})
+	db.AutoMigrate(&Teacher{}, &Quiz{}, &Question{}, &Answer{}, &Student{}, &QuizStudent{}, &QuestionStudent{}, &AnswerStudent{})
 	return db
 }
